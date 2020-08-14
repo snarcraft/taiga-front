@@ -152,7 +152,6 @@ paths.coffee_order = [
 ];
 
 paths.libs = [
-    paths.modules + "bluebird/js/browser/bluebird.js",
     paths.modules + "jquery/dist/jquery.js",
     paths.modules + "lodash/lodash.js",
     paths.modules + "messageformat/messageformat.js",
