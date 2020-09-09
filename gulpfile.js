@@ -195,8 +195,8 @@ paths.libs = [
     paths.app + "js/markdown-it-lazy-headers.js"
 ];
 
-if (fs.existsSync(`${paths.modules}elements.js`)) {
-    paths.libs.push(`${paths.modules}elements.js`);
+if (fs.existsSync(`./elements.js`)) {
+    paths.libs.push(`./elements.js`);
 }
 
 paths.libs.forEach(function(file) {
