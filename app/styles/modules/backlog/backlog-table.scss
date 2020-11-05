@@ -41,7 +41,7 @@
         .user-stories {
             flex: 1;
         }
-        .status {
+        & > .status {
             flex-basis: 150px;
             flex-grow: 0;
             flex-shrink: 0;
@@ -82,7 +82,7 @@
 
     }
 
-    .status,
+    & > .status,
     .points {
         position: relative;
         .popover {
@@ -106,6 +106,9 @@
         &.fix {
             bottom: 0;
             top: auto;
+        }
+        .status {
+            text-align: left;
         }
     }
     .pop-role {
