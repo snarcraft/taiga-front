@@ -1,3 +1,15 @@
+.swimlane-select
+    label(for="lb-swimlane-select") SWIMLANE
+    select(
+        id="lb-swimlane-select"
+        ng-model="obj.swimlane"
+    )
+        option(
+            ng-if="obj.swimlane"
+            ng-repeat="swimlane in project.swimlanes"
+            ng-value="swimlane.id"
+        )   {{swimlane.name}}
+
 section.ticket-assigned-to.multiple-assign(
     tg-assigned-users-inline
     ng-model="obj"
