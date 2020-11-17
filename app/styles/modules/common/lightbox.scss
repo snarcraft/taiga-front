@@ -710,6 +710,49 @@
         }
     }
 
+    .swimlane-select {
+        margin-block-end: 1rem;
+        .label {
+            @include font-size(xsmall);
+            @include font-type(medium);
+            color: $color-black900;
+            display: block;
+            margin-block-end: .25rem;
+            text-transform: uppercase;
+        }
+        .select {
+            @include font-size(small);
+            background: $color-gray100;
+            border: 2px solid $color-gray400;
+            border-radius: 3px;
+            color: $color-black900;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            padding-block-end: .25rem;
+            padding-block-start: .25rem;
+            padding-inline-end: 1rem;
+            padding-inline-start: 1rem;
+            width: 100%;
+            & tg-svg {
+                fill: $color-link-primary;
+            }
+            & .swimlane-select-text {
+                overflow: hidden;
+                text-align: left;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 100%;
+            }
+            &.active {
+                border-color: $color-link-primary;
+            }
+        }
+        .options {
+            display: none;
+        }
+    }
+
     .ticket-assigned-to {
         border: 0;
         margin: 0 0 1rem;

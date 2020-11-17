@@ -471,6 +471,8 @@ $confirm, $q, attachmentsService, $template, $compile) ->
         attachmentsToAdd = Immutable.List()
         attachmentsToDelete = Immutable.List()
 
+        $scope.areSwimlaneSelectOptionsVisible = false;
+
         schemas = {
             us: {
                 objName: 'User Story',
@@ -598,6 +600,7 @@ $confirm, $q, attachmentsService, $template, $compile) ->
             form.reset() if form
             resetAttachments()
             setStatus($scope.obj.status)
+            getCurrentSwimlane()
             render()
             $scope.lightboxOpen = true
             lightboxService.open($el, null, null, true)
@@ -605,6 +608,17 @@ $confirm, $q, attachmentsService, $template, $compile) ->
         resetAttachments = () ->
             attachmentsToAdd = Immutable.List()
             attachmentsToDelete = Immutable.List()
+
+        getCurrentSwimlane = () ->
+            if ($scope.obj.swimlane)
+                filteredSwimlanes = $scope.project.swimlanes.filter (swimlane) ->
+                    return swimlane.id == $scope.obj.swimlane
+                $scope.currentSwimlane = filteredSwimlanes[0];
+            else
+                $scope.currentSwimlane = $scope.project.swimlanes.shift()
+
+        displaySwimlaneSelectOptions = () ->
+            $scope.areSwimlaneSelectOptionsVisible = true
 
         $scope.addAttachment = (attachment) ->
             attachmentsToAdd = attachmentsToAdd.push(attachment)
@@ -760,6 +774,9 @@ $confirm, $q, attachmentsService, $template, $compile) ->
                     checkClose()
 
         $el.on "submit", "form", submit
+
+        $el.on "click", ".js-swimlane-selector", (event) ->
+            displaySwimlaneSelectOptions()
 
         $el.find('.close').on "click", (event) ->
             event.preventDefault()
