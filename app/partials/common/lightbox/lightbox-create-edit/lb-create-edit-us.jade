@@ -1,15 +1,11 @@
-.swimlane-select
+.swimlane-select(ng-if="project.swimlanes.length")
     .label SWIMLANE
-    button.select.js-swimlane-selector(
-        type="button"
+    tg-swimlane-selector(
+        ng-model="obj.swimlane"
+        swimlanes="project.swimlanes"
+        current-swimlane-id="obj.swimlane"
+        on-select-swimlane="ctrl.updateSwimlane(swimlane)"
     )
-        span.swimlane-select-text {{currentSwimlane.name}}
-        tg-svg(svg-icon="icon-arrow-down")
-    .options(ng-show="{{areSwimlaneSelectOptionsVisible}}")
-        .option(
-            ng-repeat="swimlane in project.swimlanes"
-            ng-class="{'selected': swimlane.id == obj.id}"
-        )   {{swimlane.name}}
 
 section.ticket-assigned-to.multiple-assign(
     tg-assigned-users-inline
