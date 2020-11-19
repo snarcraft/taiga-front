@@ -129,7 +129,7 @@ class KanbanUserstoriesService extends taiga.Service
 
         @.refresh(false)
 
-    move: (usList, statusId, swimlaneId, index, previousCard) ->
+    move: (usList, statusId, swimlaneId, index, previousCard, nextCard) ->
         usByStatus = @.getStatus(statusId, swimlaneId)
         usByStatus = _.sortBy usByStatus, (it) => @.order[it.id]
 
@@ -168,6 +168,7 @@ class KanbanUserstoriesService extends taiga.Service
             statusId: statusId,
             swimlaneId: swimlaneId,
             afterUserstoryId: previousCard,
+            beforeUserstoryId: nextCard,
             bulkUserstories: usList,
         }
 
