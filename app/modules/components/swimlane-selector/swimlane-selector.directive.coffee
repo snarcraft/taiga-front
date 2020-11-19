@@ -1,11 +1,36 @@
+###
+# Copyright (C) 2014-2018 Taiga Agile LLC
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# File: /modules/components/swimlane-selector/swimlane-selector.directive.coffee
+###
+
+taiga = @.taiga
+timeout = @.taiga.timeout
+cancelTimeout = @.taiga.cancelTimeout
+
 #############################################################################
 ## Swimlane Selector
 #############################################################################
+
 SwimlaneSelector = ($timeout) ->
 
     link = (scope, el, attrs) ->
 
         scope.displaySelector = false
+        timeout = null
 
         mount = () ->
             getCurrentSwimlane()
@@ -19,12 +44,15 @@ SwimlaneSelector = ($timeout) ->
                 scope.currentSwimlane = scope.swimlanes.shift()
 
         scope.displayOptions = () ->
+            if (timeout)
+                $timeout.cancel(timeout)
+                timeout = null
             scope.displaySelector = true
 
         scope.hideOptions = () ->
-            $timeout (() ->
+            timeout = $timeout (() ->
                 scope.displaySelector = false
-            ), 300
+            ), 1000
 
         scope.selectSwimlane = (swimlane) ->
             scope.ngModel = swimlane.id
