@@ -83,6 +83,9 @@ class TaskboardController extends mixOf(taiga.Controller, taiga.PageMixin, taiga
         taiga.defineImmutableProperty @.scope, "usTasks", () =>
             return @taskboardTasksService.usTasks
 
+        taiga.defineImmutableProperty @.scope, "taskMap", () =>
+            return @taskboardTasksService.taskMap
+            
         taiga.defineImmutableProperty @.scope, "milestoneIssues", () =>
             return @taskboardIssuesService.milestoneIssues
 
