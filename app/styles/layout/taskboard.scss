@@ -30,3 +30,25 @@
     height: 100%;
     overflow: hidden;
 }
+
+.taskboard-manager {
+    align-items: flex-start;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(180px, 2fr) 10fr;
+    height: 100%;
+    margin-top: 1px;
+    overflow: hidden;
+    &.expanded {
+        grid-template-columns: 10fr;
+    }
+}
+
+.taskboard-filter tg-filter {
+    background: none;
+    border: 1px solid $color-gray200;
+    opacity: 1;
+    padding: .5rem;
+    position: relative;
+    transform: translate(0);
+}
